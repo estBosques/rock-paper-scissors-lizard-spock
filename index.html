@@ -26,19 +26,36 @@
           You - <span id="playerScore">0</span>
           <span class="choice" id="playerChoice"> --- Choice</span>
         </h2>
-        <i class="fa-regular fa-hand-rock" id="playerRock" title="Rock"></i>
-        <i class="fa-regular fa-hand-paper" id="playerPaper" title="Paper"></i>
         <i
-          class="fa-regular fa-hand-scissors selected"
+          class="fa-regular fa-hand-rock"
+          id="playerRock"
+          title="Rock"
+          onclick="select('rock')"
+        ></i>
+        <i
+          class="fa-regular fa-hand-paper"
+          id="playerPaper"
+          title="Paper"
+          onclick="select('paper')"
+        ></i>
+        <i
+          class="fa-regular fa-hand-scissors"
           id="playerScissors"
           title="Scissors"
+          onclick="select('scissors')"
         ></i>
         <i
           class="fa-regular fa-hand-lizard"
-          id="playerLizzard"
-          title="Lizzard"
+          id="playerLizard"
+          title="Lizard"
+          onclick="select('lizard')"
         ></i>
-        <i class="fa-regular fa-hand-spock" id="playerSpock" title="Spock"></i>
+        <i
+          class="fa-regular fa-hand-spock"
+          id="playerSpock"
+          title="Spock"
+          onclick="select('spock')"
+        ></i>
       </div>
       <!-- Computer container -->
       <div class="player-container" id="computer">
@@ -56,8 +73,8 @@
         ></i>
         <i
           class="fa-regular fa-hand-lizard"
-          id="computerLizzard"
-          title="Lizzard"
+          id="computerLizard"
+          title="Lizard"
         ></i>
         <i
           class="fa-regular fa-hand-spock"
