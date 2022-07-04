@@ -32,6 +32,21 @@ const SCISSORS_NAME = "scissors";
 const LIZARD_NAME = "lizard";
 const SPOCK_NAME = "spock";
 
+const playerOptions = {
+  rock: playerRock,
+  paper: playerPaper,
+  scissors: playerScissors,
+  lizard: playerLizard,
+  spock: playerSpock,
+};
+const computerOptions = {
+  rock: computerRock,
+  paper: computerPaper,
+  scissors: computerScissors,
+  lizard: computerLizard,
+  spock: computerSpock,
+};
+
 const choices = {
   rock: { name: "Rock", defeats: ["scissors", "lizard"] },
   paper: { name: "Paper", defeats: ["rock", "spock"] },
@@ -50,6 +65,7 @@ function resetSelected() {
   removeConfetti();
   allGameIcons.forEach((icon) => {
     icon.classList.remove("selected");
+    icon.classList.replace("fa-solid", "fa-regular");
   });
 }
 
@@ -65,6 +81,7 @@ function resetAll() {
   computerScoreEl.textContent = computerScore;
   resultText.textContent = "";
 }
+window.resetAll = resetAll;
 
 // Random computer choice
 function computerRandomChoice() {
@@ -87,30 +104,45 @@ function computerRandomChoice() {
       computerChoice = SPOCK_NAME;
       break;
   }
+  displayChoice(false, computerChoice);
 }
 
-// Add 'selected' styling & computerChoice
-function displayComputerChoice() {
-  switch (computerChoice) {
+function displayChoice(isPlayer, choice) {
+  let iconElement;
+  let choiceElement;
+  if (isPlayer) {
+    iconElement = playerOptions[choice];
+    choiceElement = playerChoiceEl;
+  } else {
+    iconElement = computerOptions[choice];
+    choiceElement = computerChoiceEl;
+  }
+
+  switch (choice) {
     case ROCK_NAME:
-      computerRock.classList.add("selected");
-      computerChoiceEl.textContent = " --- Rock";
+      iconElement.classList.add("selected");
+      iconElement.classList.replace("fa-regular", "fa-solid");
+      choiceElement.textContent = " --- Rock";
       break;
     case PAPER_NAME:
-      computerPaper.classList.add("selected");
-      computerChoiceEl.textContent = " --- Paper";
+      iconElement.classList.add("selected");
+      iconElement.classList.replace("fa-regular", "fa-solid");
+      choiceElement.textContent = " --- Paper";
       break;
     case SCISSORS_NAME:
-      computerScissors.classList.add("selected");
-      computerChoiceEl.textContent = " --- Scissors";
+      iconElement.classList.add("selected");
+      iconElement.classList.replace("fa-regular", "fa-solid");
+      choiceElement.textContent = " --- Scissors";
       break;
     case LIZARD_NAME:
-      computerLizard.classList.add("selected");
-      computerChoiceEl.textContent = " --- Lizard";
+      iconElement.classList.add("selected");
+      iconElement.classList.replace("fa-regular", "fa-solid");
+      choiceElement.textContent = " --- Lizard";
       break;
     case SPOCK_NAME:
-      computerSpock.classList.add("selected");
-      computerChoiceEl.textContent = " --- Spock";
+      iconElement.classList.add("selected");
+      iconElement.classList.replace("fa-regular", "fa-solid");
+      choiceElement.textContent = " --- Spock";
       break;
   }
 }
@@ -139,7 +171,6 @@ function updateScore(playerChoice) {
 function checkResult(playerSelection) {
   resetSelected();
   computerRandomChoice();
-  displayComputerChoice();
   updateScore(playerSelection);
 }
 
@@ -147,27 +178,6 @@ function checkResult(playerSelection) {
 function select(playerSelection) {
   checkResult(playerSelection);
   // Add 'selected' styling & playerChoice
-  switch (playerSelection) {
-    case ROCK_NAME:
-      playerRock.classList.add("selected");
-      playerChoiceEl.textContent = " --- Rock";
-      break;
-    case PAPER_NAME:
-      playerPaper.classList.add("selected");
-      playerChoiceEl.textContent = " --- Paper";
-      break;
-    case SCISSORS_NAME:
-      playerScissors.classList.add("selected");
-      playerChoiceEl.textContent = " --- Scissors";
-      break;
-    case LIZARD_NAME:
-      playerLizard.classList.add("selected");
-      playerChoiceEl.textContent = " --- Lizard";
-      break;
-    case SPOCK_NAME:
-      playerSpock.classList.add("selected");
-      playerChoiceEl.textContent = " --- Spock";
-      break;
-  }
+  displayChoice(true, playerSelection);
 }
 window.select = select;
